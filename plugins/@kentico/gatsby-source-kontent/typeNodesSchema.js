@@ -24,6 +24,25 @@ const createTypeNodesSchema = async (client, schema, createTypes) => {
 
 const createFieldDefinitionsForType = (schema, type) => {
   const elementFields = type.elements.reduce((acc, element) => {
+    // ISSUE
+    // Just added to proof that there is an empty array
+    // Could be commented out.
+    if (element.type === 'modular_content') {
+      return Object.assign(acc, {
+        [element.codename]: {
+          type: getElementValueType(element.type),
+
+          resolve(source, _args, _context, info) {
+            // according to https://www.gatsbyjs.org/docs/schema-customization/#setting-default-field-values
+            // eslint-disable-next-line max-len
+            console.log(`Placing ${JSON.stringify(source[info.fieldName].linked_items___NODE)} to ${element.name} field.`);
+            return source[info.fieldName];
+          }
+
+        }
+      });
+    }
+
     return Object.assign(acc, {
       [element.codename]: {
         type: getElementValueType(element.type)
