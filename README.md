@@ -22,3 +22,26 @@ Placing ["049be403-5ca5-5678-8c6d-92b64ceee550"] to Linked & element field.
 Placing [] to Linked Items field.
 ***
 ```
+
+## Example of the data js destruction that breaks
+
+```js
+const item = {
+  system: {
+    codename: "test"
+  },
+  elements: {
+    product_line: {
+      linked_items: [
+        {
+          system: {
+            codename: "product_line"
+          }
+        }
+      ]
+    }
+  }
+};
+
+const [product_line] = item.elements.product_line.linked_items
+```
