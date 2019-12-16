@@ -1,6 +1,6 @@
 # Problem
 
-## :warning: Fixed
+## :bulb: Fixed
 
 > SHOULD BEE FIXED IN GATSBY ^2.18.11 - https://github.com/gatsbyjs/gatsby/pull/20068
 
